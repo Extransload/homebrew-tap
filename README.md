@@ -4,8 +4,8 @@
 brew install --cask extransload/tap/usagi
 ```
 
-| Cask | 설명 |
+| Cask | Description |
 |---|---|
-| [usagi](https://github.com/Extransload/usagi) | macOS 메뉴바에서 Claude Code와 Codex의 사용량 한도를 계정별로 보는 앱 |
+| [usagi](https://github.com/Extransload/usagi) | macOS menu bar app that shows Claude Code and Codex usage limits for each of your accounts |
 
-Usagi는 Apple 개발자 서명·공증을 받지 않은 앱이라, 설치할 때 macOS 격리 표시를 지워 바로 열리게 합니다.
+Usagi is not signed or notarized by Apple, so the cask removes the macOS quarantine flag on install to let it open right away.

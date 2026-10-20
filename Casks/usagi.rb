@@ -12,9 +12,10 @@ cask "usagi" do
   app "Usagi.app"
 
   # Usagi is not notarized; clear the download quarantine so it opens without a Gatekeeper block.
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-dr", "com.apple.quarantine", "#{appdir}/Usagi.app"]
+  postflight_steps do
+    run "/usr/bin/xattr",
+        args:         ["-dr", "com.apple.quarantine", "{{appdir}}/Usagi.app"],
+        must_succeed: false
   end
 
   uninstall quit: "io.github.extransload.usagi"

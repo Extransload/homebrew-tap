@@ -1,6 +1,6 @@
 cask "usagi" do
-  version "1.0.4"
-  sha256 "ed1b4889eabcc1bf32d1df10438a3bb5397e7f2e67ed0f973232ed3567357c88"
+  version "1.0.5"
+  sha256 "c33228cd263356bafb6b562a8002a0a595c3ae68b70269902316be4ab7176f58"
 
   url "https://github.com/Extransload/usagi/releases/download/v#{version}/Usagi-#{version}.zip"
   name "Usagi"

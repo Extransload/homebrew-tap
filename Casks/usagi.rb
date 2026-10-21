@@ -23,9 +23,7 @@ cask "usagi" do
         must_succeed: false
   end
 
-  # A source install (install.sh) registers this LaunchAgent; remove it so it can't reopen a stale copy.
-  uninstall launchctl: "io.github.extransload.usagi",
-            quit:      "io.github.extransload.usagi"
+  uninstall quit: "io.github.extransload.usagi"
 
   zap trash: [
     "~/.config/usagi",

@@ -48,4 +48,4 @@ jobs:
         if: steps.changed.outputs.casks != ''
         env:
           CASKS: ${{ steps.changed.outputs.casks }}
-        run: brew audit --cask --online $CASKS
+        run: brew audit --cask --online --except=livecheck_version $CASKS  # the cask may briefly lead or trail GitHub's latest release during a release or rollback

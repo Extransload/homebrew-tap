@@ -1,0 +1,51 @@
+name: Check casks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash  # bash --noprofile --norc -eo pipefail
+
+concurrency:
+  group: check-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: macos-15
+    timeout-minutes: 20
+    steps:
+      # Also checks out this repository and taps it, so `brew audit` can find its casks by name.
+      - name: Set up Homebrew
+        id: brew
+        uses: Homebrew/actions/setup-homebrew@eb02c69dbabdb66ff183c614f4ce7ab3c077592c # 2026.10.12.1
+
+      - name: Find changed casks
+        id: changed
+        env:
+          BASE: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
+          TAP: ${{ steps.brew.outputs.tap-name }}
+        run: |
+          if [[ $BASE =~ ^[0-9a-f]{40}$ && ! $BASE =~ ^0+$ ]] && git cat-file -e "$BASE^{commit}" 2>/dev/null; then
+            files=$(git diff --name-only --diff-filter=AMR "$BASE"...HEAD -- 'Casks/*.rb')
+          else
+            files=$(git ls-files 'Casks/*.rb')
+          fi
+          casks=
+          for f in $files; do casks+=" $TAP/$(basename "$f" .rb)"; done
+          echo "casks=$casks" >> "$GITHUB_OUTPUT"
+          echo "Changed casks:${casks:- none}"
+
+      - name: brew style
+        run: brew style Casks/*.rb
+
+      - name: brew audit
+        if: steps.changed.outputs.casks != ''
+        env:
+          CASKS: ${{ steps.changed.outputs.casks }}
+        run: brew audit --cask --online $CASKS

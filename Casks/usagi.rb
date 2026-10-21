@@ -7,6 +7,11 @@ cask "usagi" do
   desc "Menu bar meter for Claude Code and Codex usage limits"
   homepage "https://github.com/Extransload/usagi"
 
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
+
   depends_on macos: :sonoma
 
   app "Usagi.app"
@@ -18,7 +23,16 @@ cask "usagi" do
         must_succeed: false
   end
 
-  uninstall quit: "io.github.extransload.usagi"
+  # A source install (install.sh) registers this LaunchAgent; remove it so it can't reopen a stale copy.
+  uninstall launchctl: "io.github.extransload.usagi",
+            quit:      "io.github.extransload.usagi"
 
-  zap trash: "~/.config/usagi"
+  zap trash: [
+    "~/.config/usagi",
+    "~/Library/Caches/io.github.extransload.usagi",
+    "~/Library/HTTPStorages/io.github.extransload.usagi",
+    "~/Library/LaunchAgents/io.github.extransload.usagi.plist",
+    "~/Library/Preferences/io.github.extransload.usagi.plist",
+    "~/Library/WebKit/io.github.extransload.usagi",
+  ]
 end

@@ -3,9 +3,9 @@
 cask "tablepeek" do
   arch arm: "aarch64", intel: "x86_64"
 
-  version "0.3.2"
-  sha256 arm:   "0b06fdaa3fb18c7b3fb1fcd4629668c4236c87b935c0e753ad17aba0654d4f14",
-         intel: "07fa2b752e57b14acf07443d5c82943d560aa7755f52a7dc42d164fee03fdb10"
+  version "0.3.3"
+  sha256 arm:   "5c5fd41fec567bab375bb45a792c6f67564c5422d01d7a6aa9fe679bac45dfa9",
+         intel: "09adc3067277fcf0564efe04e2776143619914a51d7a31b01cb89c1522baec04"
 
   url "https://github.com/Extransload/TablePeek/releases/download/v#{version}/TablePeek-v#{version}-#{arch}-apple-darwin.dmg"
   name "TablePeek"

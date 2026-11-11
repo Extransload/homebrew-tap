@@ -1,13 +1,10 @@
 # Written by scripts/homebrew-cask.mjs in https://github.com/Extransload/TablePeek on each
 # stable release; edits here are replaced by the next one.
 cask "tablepeek" do
-  arch arm: "aarch64", intel: "x86_64"
+  version "0.6.0"
+  sha256 "664afb69110e30dccc9fd95cfe9d2b1f93c16862e6440741fb9ef3bd1fbfe813"
 
-  version "0.5.0"
-  sha256 arm:   "f13cb0b18e7df233893d532ee32c41dd4e1b175a8cb50cc10fa0979f8880acb5",
-         intel: "7d0e6a5c42ee8e6ba81b53b5468452c7695edc9eb93b54997e032891e1076e41"
-
-  url "https://github.com/Extransload/TablePeek/releases/download/v#{version}/TablePeek-v#{version}-#{arch}-apple-darwin.dmg"
+  url "https://github.com/Extransload/TablePeek/releases/download/v#{version}/TablePeek-v#{version}-aarch64-apple-darwin.dmg"
   name "TablePeek"
   desc "Local-first database client"
   homepage "https://github.com/Extransload/TablePeek"
@@ -19,6 +16,7 @@ cask "tablepeek" do
 
   # The app installs its own updates (Settings > General).
   auto_updates true
+  depends_on arch: :arm64
   depends_on :macos
 
   app "TablePeek.app"

@@ -1,8 +1,8 @@
 # Written by scripts/homebrew-cask.mjs in https://github.com/Extransload/NotePane on each
 # stable release; edits here are replaced by the next one.
 cask "notepane" do
-  version "0.5.0"
-  sha256 "cc3cec913bf51a64263de4a91405c0a1f216676a4c839c423a43b70121431bdd"
+  version "0.5.1"
+  sha256 "ae8f80c668f65a5941651cd8f9fafc02cd108833cf540e85df6d8e5e8b7bf210"
 
   url "https://github.com/Extransload/NotePane/releases/download/v#{version}/NotePane-#{version}-arm64.dmg"
   name "NotePane"
@@ -14,8 +14,9 @@ cask "notepane" do
     strategy :github_latest
   end
 
-  # No auto_updates: an ad-hoc signed Mac build cannot replace itself, so the
-  # app only links to the release and `brew upgrade` installs it.
+  # The app downloads each release and swaps it in itself (electron/macSelfUpdate.cjs), so
+  # `brew upgrade` leaves it alone unless asked with --greedy.
+  auto_updates true
   depends_on arch: :arm64
   depends_on macos: :monterey
 

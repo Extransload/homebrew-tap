@@ -1,8 +1,8 @@
 # Written by scripts/homebrew-cask.mjs in https://github.com/Extransload/TablePeek on each
 # stable release; edits here are replaced by the next one.
 cask "tablepeek" do
-  version "0.14.0"
-  sha256 "1e1157bc26e672f930ceb051faa35c8918a6020cbf338951da21e7d14f6f6381"
+  version "0.14.1"
+  sha256 "592c6418f55634d4fc2b8cdc0ad99c418f83fe7bb1626b52ba896a6874afd50f"
 
   url "https://github.com/Extransload/TablePeek/releases/download/v#{version}/TablePeek-v#{version}-aarch64-apple-darwin.dmg"
   name "TablePeek"

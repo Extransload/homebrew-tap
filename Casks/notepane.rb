@@ -1,8 +1,8 @@
 # Written by scripts/homebrew-cask.mjs in https://github.com/Extransload/NotePane on each
 # stable release; edits here are replaced by the next one.
 cask "notepane" do
-  version "0.5.11"
-  sha256 "7b6f451546abef70768ffa63988c8fa43160050f5782de28d049731459550229"
+  version "0.5.12"
+  sha256 "a79c8b8b42488b12889c1f99d4cf533b1ad3e01b945a67529441eb1f8de3e422"
 
   url "https://github.com/Extransload/NotePane/releases/download/v#{version}/NotePane-#{version}-arm64.dmg"
   name "NotePane"
